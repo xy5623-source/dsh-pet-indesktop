@@ -1316,6 +1316,11 @@ class Config:
             # 声音——mimo / doubao 都要用户自备 API Key，拿它们当默认等于新装即静音；
             # edge 不需要任何凭据，且失败照走既有自动回退。只改仓库默认值，不动任何人
             # 本机 config.json 里的显式取值。
+            # 本地 HTTP 语音桥（provider: localbridge）：地址 + 语言 + 超时。
+            # token 是凭据字段（kind=secret），存系统钥匙串，不进 config.json。
+            "voice_chime_localbridge_base_url": "http://127.0.0.1:9870",
+            "voice_chime_localbridge_text_lang": "zh",
+            "voice_chime_localbridge_timeout": 120,
             "voice_chime_tts_backend": "edge",  # edge / mimo / sapi / doubao
             "voice_chime_tts_fallback": True,  # 主后端失败自动回退 edge
             "voice_chime_mimo_model": "mimo-v2.5-tts",  # 或 mimo-v2.5-tts-voicedesign
@@ -1609,6 +1614,9 @@ class Config:
             "voice_chime_show_quote",
             "voice_chime_custom_quotes_zh",
             "voice_chime_custom_quotes_en",
+            "voice_chime_localbridge_base_url",
+            "voice_chime_localbridge_text_lang",
+            "voice_chime_localbridge_timeout",
             "voice_chime_tts_backend",
             "voice_chime_tts_fallback",
             "voice_chime_mimo_model",

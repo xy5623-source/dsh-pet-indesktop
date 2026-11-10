@@ -145,6 +145,8 @@
 
 ## PR 报告存档
 
+- [本地 HTTP 语音桥 TTS 后端（2026-11-10）](PR-REPORT-TTS-LOCALBRIDGE-2026-11-10.md)：新增 provider `localbridge`，把语音合成转给本机/局域网 HTTP 语音桥（GET `/<token>/tts` → wav），按 `docs/ADDING-A-TTS-PROVIDER.md` 四步接入、不改 `voice_chime*` 与设置页；含 4 个配置键、token 走钥匙串、`flavor` 不含 token 的缓存语义，以及本机 4.79 s / 4.85 s 合成与 248 passed 的实机证据。改 TTS provider 注册表、加本地/自建 TTS 后端、或排查「报时没声音/音色不对」时必读。
+
 - [跨屏过缝通行与落点吸附（2026-10-22）](PR-REPORT-CROSS-SCREEN-CORRIDOR-2026-10-22.md)：跨屏移动语义从 band 收窄改为「通行域=并集（含空洞）、静止域=各屏、四处收口吸附」，含侧墙低速截止、两轮 k3 盲审记录与先红后绿证据；改跨屏拖拽/抛掷物理、写 `_clamp_rects` 多矩形域、动 `snap_to_nearest_screen` 或排查「宠物停在看不见的地方」时必读。**先例**：① 语义改动要逐个收口点查吸附（落地/原地放下/落岛/弹弓取消，漏一个就是把宠钉死在空洞）；② `__init__` 里 set_pos 先于字段初始化，钳制条件必须 getattr 兜底；③ 覆盖判定用并集（QRegion）而非中心点，否则半身悬空漏判。
 - [macOS 多屏与 Dock 修复（2026-10-21）](PR-REPORT-MACOS-DESKTOP-2026-10-21.md)：Mac 双屏每屏一窗、设置进程启动即 Accessory，含用户副屏可见及单 Dock 图标确认、75 秒焦点观察、构建安装与测试证据；改 Mac 拓扑或 Dock 启动策略时查阅；多个 Spaces 的后续修复见下一项。
 - [macOS 多屏 Spaces 可见性（2026-10-21）](PR-REPORT-MACOS-SPACES-2026-10-21.md)：合成窗加入所有 Spaces，并在窗口重建后重放；包含原生策略读回、构建安装与用户跨屏/切换桌面验收；修改 Mac 合成窗 Spaces 策略或排查切换桌面后宠物消失时查阅。
